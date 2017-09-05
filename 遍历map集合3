@@ -1,0 +1,43 @@
+Map map = new HashMap();
+
+           Irerator iterator = map.entrySet().iterator();
+
+           while(iterator.hasNext()) {
+
+                   Map.Entry entry = iterator.next();
+
+                   Object key = entry.getKey();
+
+                   //
+
+           }
+
+
+ Map map = new HashMap();
+
+            Set  keySet= map.keySet();
+
+            Irerator iterator = keySet.iterator;
+
+            while(iterator.hasNext()) {
+
+                    Object key = iterator.next();
+
+                    Object value = map.get(key);
+
+                    //
+
+            }
+
+
+  Map map = new HashMap();
+
+       Collection c = map.values();
+
+       Iterator iterator = c.iterator();
+
+       while(iterator.hasNext()) {
+
+              Object value = iterator.next();
+
+      }
