@@ -1,0 +1,11 @@
+1、abstract  Object findAttribute(String name)
+          Searches for the named attribute in page, request, session (if valid), and application scope(s) in order and returns the value associated or null.
+
+依次在page，request，session（如果有效的话）和application Scope（范围）查找以name为名的Attribute，找到就返回对象，都找不到返回null。
+
+2、abstract  Object getAttribute(String name)
+          Returns the object associated with the name in the page scope or null if not found.
+
+在page scope内查找与name相关的属性，找到返回就返回对象，找不到就返回null。
+
+两种的区别是，查找范围不同。

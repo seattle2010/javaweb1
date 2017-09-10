@@ -6,6 +6,11 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="JSPproject" />
+          <element id="dir-copy" path="C:/apache-tomcat-7.0.57" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lombok(最新版)" />
+          <element id="library" level="project" name="jstl" />
         </element>
       </element>
     </root>

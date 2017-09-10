@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="el-api">
+    <CLASSES>
+      <root url="jar://C:/javawebMinijar/el-api.jar!/" />
+      <root url="jar://C:/javawebMinijar/jsp-api.jar!/" />
+      <root url="jar://C:/javawebMinijar/jstl.jar!/" />
+      <root url="jar://C:/javawebMinijar/standard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

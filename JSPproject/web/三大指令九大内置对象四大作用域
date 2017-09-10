@@ -1,0 +1,110 @@
+JSP的三大指令
+   设定jsp页面的整体配置信息
+   特点：
+   1  不向客户端产生任何输出
+   2 指令在jsp整个文件范围内有效
+   3 为翻译阶段提供了全局信息
+   一般放在jsp第一行
+1  page
+2  include
+3 taglib
+
+
+JSP的九大内置对象:
+内置对象名称          内置对象的类型                       描述
+--------------------------------------------------------------------------------------
+request                 HttpServletRequest                      请求对象
+response                HttpServletResponse                     响应对象
+pageContext             PageContext                             当前JSP作用域对象
+session                 HttpSession                             会话对象(page指令:session="true")
+exception               Throwable                               异常类型,封装当前JSP的异常信息(page指令:isErrorPage="true")
+application             ServletContext                          当前Web应用对象
+config                  ServletConfig                           当前Servlet的信息配置对象
+out                     JspWriter                               字符输出流对象
+page                    Object                                  当前Servlet对象
+
+JSP的四大作用域
+
+JSP的四大作用域:
+作用域对象就只能在自己的作用范围之内共享数据.
+----------------------------------
+作用域对象名称         作用域对象的类型                       描述
+--------------------------------------------------------------------------------------
+pageContext(page)      PageContext                            当前JSP的作用域对象
+request                HttpServletRequest                     当前请求的作用域
+session                HttpSession                            当前会话的作用域
+application            ServletContext                         当前Web应用的作用域
+
+
+内置对象特点:
+1. 由JSP规范提供,不用编写者实例化。
+2. 通过Web容器实现和管理
+3. 所有JSP页面均可使用
+4. 只有在脚本元素的表达式或代码段中才可使用(<%=使用内置对象%>或<%使用内置对象%>)
+
+常用内置对象:
+1. 输出输入对象:request对象、response对象、out对象
+2. 通信控制对象:pageContext对象、session对象、application对象
+3. Servlet对象:page对象、config对象
+4. 错误处理对象:exception对象
+
+
+Request(Javax.servlet.ServletRequest)它包含了有关浏览器请求的信息.通过该对象可以获得请求中的头信息、Cookie和请求参数。
+Response(Javax.servlet.ServletResponse)作为JSP页面处理结果返回给用户的响应存储在该对象中。并提供了设置响应内容、响应头以及重定向的方法(如cookies,头信息等)
+Out(Javax.servlet.jsp.JspWriter)用于将内容写入JSP页面实例的输出流中,提供了几个方法使你能用于向浏览器回送输出结果。
+pageContext(Javax.servlet.jsp.PageContext)描述了当前JSP页面的运行环境。可以返回JSP页面的其他隐式对象及其属性的访问,另外,它还实现将控制权从当前页面传输至其他页面的方法。
+Session(javax.servlet.http.HttpSession)会话对象存储有关此会话的信息,也可以将属性赋给一个会话,每个属性都有名称和值。会话对象主要用于存储和检索属性值。
+Application(javax.servle.ServletContext)存储了运行JSP页面的servlet以及在同一应用程序中的任何Web组件的上下文信息。
+Page(Java.lang.Object)表示当前JSP页面的servlet实例
+Config(javax.servlet.ServletConfig)该对象用于存取servlet实例的初始化参数。
+Exception(Javax.lang.Throwable)在某个页面抛出异常时,将转发至JSP错误页面,提供此对象是为了在JSP中处理错误。只有在错误页面中才可使用<%@page isErrorPage=“true”%>
+Jsp内置对象
+功能
+主要方法
+out
+向客户端输出数据
+print() println() flush() clear() isAutoFlush() getBufferSize() close() …………
+request
+向客户端请求数据
+getAttributeNames() getCookies() getParameter() getParameterValues() setAttribute() getServletPath() …………..
+response
+封装了jsp产生的响应,然后被发送到客户端以响应客户的请求
+addCookie() sendRedirect() setContentType()
+flushBuffer() getBufferSize() getOutputStream()
+sendError() containsHeader()……………
+application
+config
+表示Servlet的配置,当一个Servlet初始化时,容器把某些信息通过此对象传递给这个Servlet
+getServletContext() getServletName() getInitParameter() getInitParameterNames()……………
+page
+Jsp实现类的实例,它是jsp本身,通过这个可以对它进行访问
+flush()………
+pagecontext
+为JSP页面包装页面的上下文。管理对属于JSP中特殊可见部分中己经命名对象的该问
+forward() getAttribute() getException() getRequest() getResponse() getServletConfig()
+getSession() getServletContext() setAttribute()
+removeAttribute() findAttribute() ……………
+session
+用来保存每个用户的信息,以便跟踪每个用户的操作状态
+getAttribute() getId() getAttributeNames() getCreateTime() getMaxInactiveInterval()
+invalidate() isNew()
+exception
+反映运行的异常
+getMessage()…………
+
+
+pageContext, request, session、application四个作用域中
+        1、如果把变量放到pageContext里，就说明它的作用域是page，它的有效范围只在当前jsp页面里。
+        从把变量放到pageContext开始，到jsp页面结束，你都可以使用这个变量。
+        2、如果把变量放到request里，就说明它的作用域是request，它的有效范围是当前请求周期。所谓请求周期，
+        就是指从http请求发起，到服务器处理结束，返回响应的整个过程。
+        在这个过            程中可能使用forward的方式跳转了多个jsp页面，在这些页面里你都可以使用这个变量。
+        3、如果把变量放到session里，就说明它的作用域是session，它的有效范围是当前会话。所谓当前会话，
+        就是指从用户打开浏览器开始，到用户关闭浏览器这中间的过程。这个过程可能包含多个请求响应。也就是说，
+        只要用户不关浏览器，服务器就有办法知道这些请求是一个人发起的，整个过程被称为一个会话（session），而放到会话中的变量，
+        4、如果把变量放到application里，就说明它的作用域是application，它的有效范围是整个应用。
+        整个应用是指从应用启动，到应用结束。我们没有说“从服务器启动，到服务器关闭”是因为一个服务器可能部署多个应用，
+        当然你关闭了服务器，就会把上面所有的应用都关闭了。application作用域里的变量，它们的存活时间是最长的，
+        如果不进行手工删除，它们就一直可以使用。与上述三个不同的是，application里的变量可以被所有用户共用。
+        如果用户甲的操作修改了application中的变量，用户乙访问时得到的是修改后的值。
+        这在其他scope中都是不会发生的，page, request, session都是完全隔离的，无论如何修改都不会影响其他

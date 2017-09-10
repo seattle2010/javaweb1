@@ -11,6 +11,27 @@
         </webroots>
       </configuration>
     </facet>
+    <facet type="JRebel" name="JRebel">
+      <configuration>
+        <option name="deleteUnindexed" value="true" />
+        <option name="httpAuthEnabled" value="false" />
+        <option name="httpPassword" />
+        <option name="httpUsername" />
+        <option name="ideModuleStorage">
+          <map>
+            <entry key="com.zeroturnaround.jrebel.FormatVersion" value="7.0.0" />
+            <entry key="com.zeroturnaround.jrebel.remoting.DeleteUnindexedFiles" value="true" />
+            <entry key="com.zeroturnaround.jrebel.remoting.ModuleRemoteServerSelection" value="off" />
+          </map>
+        </option>
+        <option name="manualXML" value="false" />
+        <option name="masterModuleName" />
+        <option name="remotingEnabled" value="false" />
+        <option name="secure" value="true" />
+        <option name="url" />
+        <option name="xmlDir" />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -19,7 +40,23 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.79" level="application_server_libraries" />
-    <orderEntry type="library" name="servlet-api" level="project" />
+    <orderEntry type="library" exported="" name="servlet-api" level="project" />
+    <orderEntry type="library" exported="" name="el-api" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://C:/apache-tomcat-7.0.57" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://C:/apache-tomcat-7.0.57/webapps/docs/appdev/sample/src" />
+          <root url="file://C:/apache-tomcat-7.0.57/webapps/examples/WEB-INF/classes" />
+          <root url="file://C:/apache-tomcat-7.0.57/webapps/examples/WEB-INF/jsp/applet" />
+          <root url="file://C:/apache-tomcat-7.0.57/webapps/examples/jsp/plugin/applet" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="lombok(最新版)" level="project" />
+    <orderEntry type="library" name="jstl" level="project" />
   </component>
 </module>

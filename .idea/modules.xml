@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/ServletTrain201709/ServletTrain201709.iml" filepath="$PROJECT_DIR$/ServletTrain201709/ServletTrain201709.iml" />
       <module fileurl="file://$PROJECT_DIR$/Servletproject/Servletproject.iml" filepath="$PROJECT_DIR$/Servletproject/Servletproject.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaweb1.iml" filepath="$PROJECT_DIR$/javaweb1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc_servlet_jsp/jdbc_servlet_jsp.iml" filepath="$PROJECT_DIR$/jdbc_servlet_jsp/jdbc_servlet_jsp.iml" />
     </modules>
   </component>
 </project>

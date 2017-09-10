@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="jdbc_servlet_jsp:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/jdbc_servlet_jsp_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="jdbc_servlet_jsp/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="jdbc_servlet_jsp" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-5.1.8" />
+          <element id="library" level="project" name="lombok(最新版)1" />
+          <element id="library" level="module" name="JUnit4" module-name="jdbc_servlet_jsp" />
+          <element id="file-copy" path="C:/javawebMinijar/jstl.jar" />
+          <element id="file-copy" path="C:/javawebMinijar/standard.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
