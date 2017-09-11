@@ -49,10 +49,5 @@ ${empty list}
 <%--做比较 判断值相等  地址相等--%>
 ${1==1}
 ${1 eq 1}
-
-<%
-    pageContext.setAttribute("date",new java.util.Date());
-%>
-北京时间: ${date}
 </body>
 </html>
