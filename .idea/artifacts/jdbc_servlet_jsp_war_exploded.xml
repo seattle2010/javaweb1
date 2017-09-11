@@ -9,7 +9,6 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="mysql-connector-java-5.1.8" />
-          <element id="library" level="project" name="lombok(最新版)1" />
           <element id="library" level="module" name="JUnit4" module-name="jdbc_servlet_jsp" />
           <element id="file-copy" path="C:/javawebMinijar/jstl.jar" />
           <element id="file-copy" path="C:/javawebMinijar/standard.jar" />

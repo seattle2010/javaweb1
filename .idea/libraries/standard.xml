@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="lombok(最新版)1">
+  <library name="standard">
     <CLASSES>
-      <root url="jar://C:/lombok(最新版).jar!/" />
+      <root url="jar://C:/javawebMinijar/standard.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
