@@ -1,0 +1,88 @@
+1.getAttribute是取得jsp中 用setAttribute設定的attribute
+2.parameter得到的是string；attribute得到的是object
+3.request.getParameter()方法传递的数据，会从Web客户端传到Web服务器端，代表HTTP请求数据；request.setAttribute()和getAttribute()方法传递的数据只会存在于Web容器内部，在具有转发关系的Web组件之间共享。即request.getAttribute()方法返回request范围内存在的对象，而request.getParameter()方法是获取http提交过来的数据。
+
+总结：
+getattribute一般在前台用与获取后台转发值
+getParameter一般在后台用于获取前台请求值
+getParameter  返回的是String 用于读取参数中的值;
+getAttribute   返回的是Object，需进行转换,可用setAttribute设置成任意对象，使用很灵活，可随时用；
+getParameter  获取请求值
+getAttribute   获取转发值
+
+-----------------------------------
+　　一、分别描述
+　 1、getAttribute()方法
+　　它是一个函数。它只有一个参数。那个参数就是我们使用getElementById()或者使用getElementByTagName()方法取出来的节点元素的属性名称。取得属性的名称之后，我们就可以用getAttribute()方法将它的属性值拿出来了。可能读起来有点拗口，请看下面的小李子。
+
+[javascript] view plain copy print?
+<body>
+    <p id="p1" customData="pmx">ppp</p>
+    <script>
+       var p = document.getElementById("p1");
+       var pnode = p.getAttributeNode("customData");
+       console.log(pnode)
+    </script>
+</body>
+
+　　2、getParameter()方法
+　　getParameter的中文意思就是获取参数，那么这个方法的作用就是用来获取参数的，它得到的是String类型。或者是用于读取提交的表单中的值，或是是某个表单提交过去的数据。getParameter()是获取POST/GET传递的参数值；它用于客户端重定向时，即点击了链接或提交按扭时传值用，即用于在用表单或url重定向传值时接收数据用。getParameter只是应用服务器在分析你送上来的request页面的文本时，取得你设在表单或url重定向时的值。  当两个web组件之间为链接关系时，被链接的组件同个getParameter方法来获得请求参数。例子如下：
+　　
+[javascript] view plain copy print?
+<span style="white-space:pre">  </span>String itemNoOrName=request.getParameter("itemNoOrName")==null ? "" :request.getParameter
+[javascript] view plain copy print?
+<span style="white-space:pre">  </span>("itemNoOrName");
+        PageModel pageModel =(PageModel) request.getAttribute("pageModel");
+
+　　二、getAttribute和getParameter的区别
+　　getAttribute表示从request范围取得设置的属性，那么我们必须先setAttribute设置属性，才能获得属性，设置与取得的为string类型。HttpServletRequest类既有getAttribute()方法也有getParameter方法，这两个方法有什么区别呢？
+　　 1、getAttribute是返回对象,getParameter返回字符串。
+　  2、request.getAttribute()方法返回request范围内存在的对象，而request.getParameter()方法是获取http提交过来的数据。
+　 3、与getAttribute()方法对应的有setAttribute()方法，但是没有雨getParameter()相对的setParameter().
+　 4、request.getAttribute()方法返回request范围内存在的对象，而request.getParameter()方法是获取http提交过来的数据。
+
+-----------------------------------------------------------------
+getAttribute表示从request范围取得设置的属性，必须要先setAttribute设置属性，才能通过getAttribute来取得，设置与取得的为Object对象类型
+getParameter表示接收参数，参数为页面提交的参数，包括：表单提交的参数、URL重写（就是xxx?id=1中的id）传的参数等，因此这个并没有设置参数的方法（没有setParameter），而且接收参数返回的不是Object，而是String类型
+
+HttpServletRequest类既有getAttribute()方法，也由getParameter()方法，这两个方法有以下区别：
+
+（1）HttpServletRequest类有setAttribute()方法，而没有setParameter()方法
+
+（2）当两个Web组件之间为链接关系时，被链接的组件通过getParameter()方法来获得请求参数，例如假定welcome.jsp和authenticate.jsp之间为链接关系，welcome.jsp中有以下代码：
+
+<a  href="authenticate.jsp?username=weiqin">authenticate.jsp  </a>
+
+或者：
+
+<form  name="form1"  method="post"  action="authenticate.jsp">
+   请输入用户姓名：<input  type="text"  name="username">
+   <input  type="submit"  name="Submit"  value="提交">
+</form>
+
+在authenticate.jsp中通过request.getParameter("username")方法来获得请求参数username:
+
+<%  String  username=request.getParameter("username");  %>
+
+（3）当两个Web组件之间为转发关系时，转发目标组件通过getAttribute()方法来和转发源组件共享request范围内的数据。假定  authenticate.jsp和hello.jsp之间为转发关系。authenticate.jsp希望向hello.jsp传递当前的用户名字，  如何传递这一数据呢？先在authenticate.jsp中调用setAttribute()方法：
+
+<%
+String  username=request.getParameter("username");
+request.setAttribute("username"，username);
+%>
+<jsp:forward  page="hello.jsp"  />
+
+在hello.jsp中通过getAttribute()方法获得用户名字:
+
+<%  String  username=(String)request.getAttribute("username");  %>
+Hello:  <%=username  %>
+
+从更深的层次考虑，request.getParameter()方法传递的数据，会从Web客户端传到Web服务器端，代表HTTP请求数据。request.getParameter()方法返回String类型的数据。
+
+request.setAttribute()和getAttribute()方法传递的数据只会存在于Web容器内部，在具有转发关系的Web组件之间共享。这两个方法能够设置Object类型的共享数据。
+
+request.getParameter()取得是通过容器的实现来取得通过类似post，get等方式传入的数据，，  request.setAttribute()和getAttribute()只是在web容器内部流转，仅仅是请求处理阶段，这个的确是正解.
+
+getAttribute是返回对象,getParameter返回字符串
+
+request.getAttribute()方法返回request范围内存在的对象，而request.getParameter()方法是获取http提交过来的数据。
