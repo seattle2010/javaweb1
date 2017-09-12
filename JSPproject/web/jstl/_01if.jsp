@@ -21,6 +21,7 @@
 </c:if>
 
 <%--语法2 把判断结果存储在一个变量中 单标签--%>
+把结果放入到var里面  同时放到scope指定作用域里
 <c:if test="${num > 20}" var="result" scope="page"/>
 ${result}
 

@@ -27,5 +27,8 @@
     ${ele} <br>
 </c:forEach>
 
+${date}
+
+
 </body>
 </html>

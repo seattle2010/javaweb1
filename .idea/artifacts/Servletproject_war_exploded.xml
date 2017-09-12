@@ -6,6 +6,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Servletproject" />
+          <element id="dir-copy" path="C:/apache-tomcat-7.0.57" />
         </element>
         <element id="directory" name="lib" />
       </element>
