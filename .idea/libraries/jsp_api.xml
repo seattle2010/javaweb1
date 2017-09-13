@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jsp-api">
+    <CLASSES>
+      <root url="jar://C:/javawebMinijar/jsp-api.jar!/" />
+      <root url="jar://C:/javawebMinijar/standard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

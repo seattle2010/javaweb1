@@ -1,9 +1,9 @@
-package templateJDBCTemplate.web.servlet;
+package com.web.servlet;
 
 
-import templateJDBCTemplate.dao.IPersonDao;
-import templateJDBCTemplate.dao.impl.PersonDaoImpl;
-import templateJDBCTemplate.domain.Person;
+import com.templateJDBCTemplate.dao.IPersonDao;
+import com.templateJDBCTemplate.dao.impl.PersonDaoImpl;
+import com.templateJDBCTemplate.domain.Person;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

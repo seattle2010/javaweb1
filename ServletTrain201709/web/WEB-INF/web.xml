@@ -3,4 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+      <servlet>
+          <servlet-name>loginServlet</servlet-name>
+          <servlet-class>com.transfer.servlet.loginServlet</servlet-class>
+        </servlet>
+          <servlet-mapping>
+          <servlet-name>loginServlet</servlet-name>
+          <url-pattern>/get/loginServlet</url-pattern>
+        </servlet-mapping>
+    <servlet>
+        <servlet-name>listServlet</servlet-name>
+        <servlet-class>com.transfer.servlet.listServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listServlet</servlet-name>
+        <url-pattern>/get/listServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <servlet>
+          <servlet-name>ForwardServlet1</servlet-name>
+          <servlet-class>transfer.ForwardServlet1</servlet-class>
+        </servlet>
+          <servlet-mapping>
+          <servlet-name>ForwardServlet1</servlet-name>
+          <url-pattern>/ForwardServlet1</url-pattern>
+        </servlet-mapping>
 </web-app>

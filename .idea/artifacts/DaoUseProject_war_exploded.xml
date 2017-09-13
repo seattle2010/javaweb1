@@ -1,16 +1,16 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="javaweb1:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/javaweb1_war_exploded</output-path>
+  <artifact type="exploded-war" name="DaoUseProject:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/DaoUseProject_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="javaweb1/web/Web" />
+      <element id="javaee-facet-resources" facet="DaoUseProject/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="javaweb1" />
-          <element id="dir-copy" path="C:/apache-tomcat-7.0.57" />
+          <element id="module-output" name="DaoUseProject" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="lombok(最新版)" />
+          <element id="library" level="module" name="JUnit4" module-name="DaoUseProject" />
           <element id="library" level="project" name="jstl" />
+          <element id="library" level="project" name="lombok(最新版)" />
           <element id="library" level="project" name="mysql-connector-java-5.1.8" />
           <element id="library" level="project" name="standard" />
         </element>

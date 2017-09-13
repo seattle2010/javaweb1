@@ -1,5 +1,4 @@
-package templateJDBCTemplate.web.servlet;
-
+package Crud;
 
 import templateJDBCTemplate.dao.IPersonDao;
 import templateJDBCTemplate.dao.impl.PersonDaoImpl;
@@ -14,32 +13,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "ListStudentServlet", urlPatterns = "/student/ListStudentServlet")
-public class ListStudentServlet extends HttpServlet {
-
-    //----------------------------------
-private IPersonDao dao;
+@WebServlet(name = "Person1ListServlet", urlPatterns = "/Person1ListServlet")
+public class Person1ListServlet extends HttpServlet {
+    private IPersonDao dao;
     @Override
     public void init() throws ServletException {
         dao = new PersonDaoImpl();
     }
-
-    //----------------------------------
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        //=============================================
-//1 接受请求参数 封装对象
-//    因为是查询 所以没有请求参数
-        //2 调用业务方法 处理请求
-        List<Person> list = dao.list();
-        for(Person ele:list){
-            System.out.println(ele);
-        }
-                //3控制页面跳转
-        //把结果数据共享给list.jsp
-        request.setAttribute("students",list);
-        request.getRequestDispatcher("/WEB-INF/views/student/list.jsp").forward(request, response);
+//=================Person1ListServlet============================
+        List<Person> person = dao.list();
+        request.setAttribute("person",person);
+        request.getRequestDispatcher("views/person1_list.jsp").forward(request, response);
     }
 }
