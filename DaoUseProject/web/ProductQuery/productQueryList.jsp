@@ -6,9 +6,14 @@
     <title>货品显示列表</title>
 </head>
 <body>
-List
+Query
 <%--${products}--%>
-<a href="/ProductServlet?cmd=add">添加货品</a>
+<form action="/ProductSimpleServlet" method="post">
+    商品的名称: <input type="text" name="productName" value="${query.productName}" style="width: 100px"> <br>
+    商品零售价: 低价格<input type="number" name="minSalePrice" value="${query.minSalePrice}" style="width: 120px">
+    - 高价格<input type="number" name="maxSalePrice" value="query.maxSalePrice"> <br>
+    <input type="submit" value="查询" style="background-color: orange" width=100px>
+</form>
 <table border="1" cellspacing="0" cellpadding="0" width=100%>
     <tr>
         <th>货品编号</th>
@@ -19,7 +24,6 @@ List
         <th>零&nbsp售&nbsp价</th>
         <th>成&nbsp本&nbsp价</th>
         <th>折&emsp;&emsp;扣</th>
-        <th>操&emsp;&emsp;作</th>
     </tr>
     <c:forEach var="p" items="${products}">
     <tr>
@@ -31,10 +35,6 @@ List
         <td>${p.salePrice}</td>
         <td>${p.costPrice}</td>
         <td>${p.cutoff}</td>
-        <td>
-            <a href="/ProductServlet?cmd=toUpdate">编辑</a>
-            <a href="#">删除</a>
-        </td>
     </tr>
     </c:forEach>
 </table>

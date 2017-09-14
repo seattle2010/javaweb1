@@ -8,7 +8,9 @@
           <element id="module-output" name="Servletproject" />
           <element id="dir-copy" path="C:/apache-tomcat-7.0.57" />
         </element>
-        <element id="directory" name="lib" />
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lombok(最新版)" />
+        </element>
       </element>
     </root>
   </artifact>

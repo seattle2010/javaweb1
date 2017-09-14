@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/ProductServlet?cmd=save" method="post">
+<form action="/ProductServlet?cmd=update" method="post">
     <table border="1" cellpadding="0" cellspacing="0">
         <tr>
             <td>货品分类</td>
@@ -48,7 +48,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="保存"></td>
+            <td colspan="2"><input type="submit" value="更新保存"></td>
         </tr>
     </table>
 </form>
