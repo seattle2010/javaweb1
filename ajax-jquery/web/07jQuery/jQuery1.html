@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一定要先在js之前引入jquery</title>
+    <script src="../jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+<div id="div1">DIV1</div>
+<div id="div2">DIV2</div>
+<input type="button" value="使用js" onclick= change1()>
+<input type="button" value="使用jQuery"  onclick= change2()>
+<input type="button" value="使用js" id="btn1" >
+<input type="button" value="使用jQuery" id="btn2" >
+<script>
+//	alert($);
+function change1() {
+	document.getElementById("div1").innerHTML = "java script";
+}
+function change2() {
+	$("#div2").text("jQuery");
+}
+
+document.getElementById("btn1").onclick = function () {
+	document.getElementById("div1").innerHTML = "java script";
+}
+//$(function (){})是一个对象  页面一加载完毕 就执行  类似 window.onload = fuction(){   }
+    $(function () {
+        $("#btn2").click(function () {
+	        $("#div2").text("jquery改变2");   //$("#div2").html("jquery改变2");
+        })
+    });
+</script>
+</body>
+</html>
