@@ -51,12 +51,12 @@ public class ProductDAOImpl implements IProductDAO {
             List<Object> params = new ArrayList<>();
             //商品的名称
             if(hasLength(productName)){
-                sql.append(" AND productName = ?");
+                sql.append(" AND productName = ? limit 1");
                 params.add(productName);
             }
 
-            List<Product> productList = JDBCTemplate.query(sql.toString(), params.toArray());
-            return productList;
+        List<Product> productList = JDBCTemplate.query(sql.toString(), params.toArray());
+        return productList;
         }
 
     public static boolean hasLength(String str) {

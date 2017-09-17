@@ -17,6 +17,7 @@
 用户名 : <input type="text" id="username" style="background-color: orange"> <span id="msg" style="background-color: pink"></span>
 </body>
 <script>
+//	document.getElementById("username").onblur = function (this) {
     document.getElementById("username").onblur = function () {
 //        alert("1");
         var usernameText = this.value;
