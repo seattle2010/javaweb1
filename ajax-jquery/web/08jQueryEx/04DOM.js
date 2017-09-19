@@ -1,39 +1,51 @@
 $(function() {
-
+// String DOM jQuery
 	$("#test_append").click(function() {
 		// append(content) 向每个匹配的元素内部追加内容。
-		
+		// append(content) 向每个匹配的元素内部追加内容。
+		// 父亲.append(子);  插入在父亲最后位置
+		//1插入字符串
+		// $("#div1").append("<b>hi</b>");
+		//2插入DOM元素
+		// $("#div1").append(document.getElementById("b1"));
+		//3插入jQuery对象
+		$("#div1").append($("#b1"));
+
+		// $("div").append($("#b1"));
 	});
 
 	$("#test_appendTo").click(function() {
 		// appendTo 把所有匹配的元素追加到另一个指定的元素元素集合中。
-		
+		$("#b1").appendTo("#div2");
 	});
 
 	$("#test_prepend").click(function() {
 		// prepend 向每个匹配的元素内部前置内容。
-
+		$("#div1").prepend($("#b1"));
 	});
 
 	$("#test_prependTo").click(function() {
 		// 把所有匹配的元素前置到另一个、指定的元素元素集合中。
+
 	});
 
 });
-
+// ------------------------------------------
 $(function() {
 	$("#test_after").click(function() {
 		// 在每个匹配的元素之后插入内容。
-		
+		//大哥.after(小弟)
+		$("div").after($("#b1"));
 	});
 
 	$("#test_before").click(function() {
 		// 在每个匹配的元素之前插入内容。
-	
+		$("div").before($("#b1"));
 	});
 	$("#test_insertAfter").click(function() {
 		// 把所有匹配的元素插入到另一个、指定的元素元素集合的后面。
-		
+		//小弟.insertAfter(大哥)
+		$("b1").insertAfter($("div"));
 	});
 	$("#test_insertBefore").click(function() {
 		// 把所有匹配的元素插入到另一个、指定的元素元素集合的前面。
@@ -51,10 +63,15 @@ $(function() {
 		 */
 		//临时删除 会有一个副本被保存 可以var copy = $("#btn").remove();
 		  //不保留元素带的事件
+		// $("#btn").html("");
+
 		// $("#btn").remove();
+		var copy = $("#btn").remove();
+		copy.insertAfter($("ul"));
 		//效果相同   保留元素的事件
 		$("#btn").detach();
 	});
+
 	//删除子节点
 	$("#test_emptyNode").click(function() {
 		// $("#ul").html("");
@@ -80,15 +97,16 @@ $(function() {
 	copy.insertAfter($("#ul"));
 		
 	});
-
-	$("#test_replace1").click(function() {
+//把XX替换成YY
+	$("#test_replaceWith").click(function() {
 		// replaceWith将所有匹配的元素替换成指定的HTML或DOM元素。
 		$(":button").replaceWith("<b>SB<b>");
 	});
 
-	$("#test_replace2").click(function() {
+	// XX被替换成YY
+	$("#test_replaceAll").click(function() {
 		// replaceAll用匹配的元素替换掉所有 selector匹配到的元素。
-		$("<b>SB<b>").replaceWith(":button");
+		$("<b>SB<b>").replaceAll(":button");
 	});
 
 });
@@ -97,7 +115,9 @@ $(function() {
 //获取属性值
 	$("#test_getterAttr").click(function() {
 		// jquery凡是取值的方法,如果是多个元素,那么只会取第一个元素的值.
-		console.info($("#div1").attr("name"))
+		console.info($("#div1").attr("name"));
+
+//不行		//console.info($("div").attr("name"));
 	});
 //设置属性值
 	$("#test_setterAttr").click(function() {

@@ -1,28 +1,18 @@
 $(function() {
-
+// String DOM jQuery
 	$("#test_append").click(function() {
 		// append(content) 向每个匹配的元素内部追加内容。
-		// 父亲.append(子);  插入在父亲最后位置
-		//1插入字符串
-		$("#div1").append("XXX");
-		$("#div1").append("<b>XXX<b>");
-		//2插入DOM元素
-		$("#div1").append(document.getElementById("b1"));
-		//3插入jQuery对象
-		$("#div1").append($("#b1"));//先注销上一个
 
-		//把hello加入到所有div中
-		$("div").append($("#b1"));
 	});
 
 	$("#test_appendTo").click(function() {
 		// appendTo 把所有匹配的元素追加到另一个指定的元素元素集合中。和上面相反
-		$("b1").appendTo($("#div1"));
+
 	});
 
 	$("#test_prepend").click(function() {
 		// prepend 向每个匹配的元素内部前置内容。
-		$("#div1").prepend($("#b1"));
+
 	});
 
 	$("#test_prependTo").click(function() {
@@ -34,16 +24,16 @@ $(function() {
 $(function() {
 	$("#test_after").click(function() {
 		// 在每个匹配的元素之后插入内容。 哥哥.after(弟弟)
-		$("div").after($("#b1"));
+
 	});
 
 	$("#test_before").click(function() {
 		// 在每个匹配的元素之前插入内容。
-		$("div").before($("#b1"));
+
 	});
 	$("#test_insertAfter").click(function() {
 		// 把所有匹配的元素插入到另一个、指定的元素元素集合的后面。小弟.insertAfter(大哥)
-		$("b1").insertAfter($("div"));
+
 	});
 	$("#test_insertBefore").click(function() {
 		// 把所有匹配的元素插入到另一个、指定的元素元素集合的前面。
@@ -91,14 +81,14 @@ $(function() {
 		
 	});
 
-	$("#test_replace1").click(function() {
+	$("#test_replaceWith").click(function() {
 		// replaceWith将所有匹配的元素替换成指定的HTML或DOM元素。
 		$(":button").replaceWith("<b>SB<b>");
 	});
 
-	$("#test_replace2").click(function() {
+	$("#test_replaceAll").click(function() {
 		// replaceAll用匹配的元素替换掉所有 selector匹配到的元素。
-		$("<b>SB<b>").replaceWith(":button");
+		$("<b>SB<b>").replaceAll(":button");
 	});
 
 });
@@ -128,14 +118,17 @@ $(function() {
 		// 为每个匹配的元素添加指定的类名。注意不要加"."
 		$(":button").addClass("other");
 	});
+
 //删除css
 	$("#test_removeClass").click(function() {
 		// 为每个匹配的元素添加指定的类名。注意不要加"."
+
 		$(":button").removeClass("other");
 	});
 //轮换css
 	$("#test_toggleClass").click(function() {
 		// 如果存在（不存在）就删除（添加）一个类。
+
 		$(":button").toggleClass("other");
 	});
 
