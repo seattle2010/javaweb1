@@ -7,7 +7,7 @@ $(function () {
 		$.get("/userHadCheckServlet",params, function (data) {
 
 			$("#msg").text(data);
-		});
+		},"json");
 	});
 
 //		$("#username").click(function () {
