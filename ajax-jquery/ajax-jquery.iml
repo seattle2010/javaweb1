@@ -37,5 +37,8 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.8" level="project" />
     <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="library" name="standard" level="project" />
+    <orderEntry type="library" name="jquery-ajax-chain-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="json-patch-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="jquery-DefinitelyTyped" level="application" />
   </component>
 </module>

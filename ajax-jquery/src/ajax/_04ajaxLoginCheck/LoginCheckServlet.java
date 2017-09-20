@@ -20,7 +20,10 @@ public class LoginCheckServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         //=============================================
-System.out.println(username+","+password); 
+        String username = request.getParameter("usernameText");
+        String password = request.getParameter("passwordText");
+        System.out.println(username +","+ password);
+
     }
 
 }

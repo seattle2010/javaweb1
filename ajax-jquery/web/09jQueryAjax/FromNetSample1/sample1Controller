@@ -1,0 +1,162 @@
+package com.bawei.controller;
+
+import com.bawei.pojo.Message;
+import com.bawei.pojo.User;
+import com.bawei.service.MessageService;
+import com.bawei.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+@Controller
+    @RequestMapping("user")
+    public class UserController {
+        @Autowired
+        private UserService service;
+        @Autowired
+        private MessageService mservice;
+
+        @RequestMapping("selectAll")
+        public String selectAll(Model model) {
+            System.out.print("进入查询全部方法");
+            List<User> list = service.selectAll();
+            model.addAttribute("list", list);
+            List<Message> list2=mservice.getMessageList();
+            model.addAttribute("list2",list2);
+              return "selectList";
+        }
+    @RequestMapping(value = "/imgUpload",method = RequestMethod.POST )
+    public String imgUpload(MultipartFile  image, HttpServletRequest req, HttpServletResponse res) throws IOException {
+        Map<String,Object> map = new HashMap<>();
+        System.out.println("----- 插入图片 -------");
+System.out.println(image.getBytes()+""+image.getOriginalFilename()+""+image.getBytes());
+System.out.println(!image.isEmpty());
+if(!image.isEmpty()){
+    byte[] bytes=image.getBytes();
+    return "redirect:uploadSuccess";
+}else{
+    return "redirect:uploadSuccess";
+}
+    }
+
+    @RequestMapping(value = "login",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> login(User user,HttpSession session,Model model){
+        Map<String,Object> map = new HashMap<>();
+        try {
+
+            System.out.print("进入了登录方法");
+            user = service.login(user);
+            session.setAttribute("user", user);
+            int count = 1;
+            map.put("count",count);
+            return map;
+        } catch (Exception e) {
+            System.out.print("出错了");
+         return map;
+        }
+    }
+
+    @RequestMapping( value = "/selectOne",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object>selectOne(String content)throws Exception {
+        content=URLDecoder.decode(content,"utf-8");
+        System.out.print(content);
+        Map<String,Object> map=new HashMap<String,Object>();
+        Message msg=new Message();
+        List<Message> list=mservice.selectOne(content);
+        map.put("list",list);
+        return map;
+        }
+
+    @ResponseBody
+    @RequestMapping( value = "/selectByName",method = RequestMethod.GET)
+    public Map<String,Object>selectByName(String op,HttpSession session,HttpServletRequest request)throws Exception {
+           op=URLDecoder.decode(op,"utf-8");
+           System.out.print("jing re cha xun jie mian ");
+Map<String,Object> map=new HashMap<String,Object>();
+Map<String,String> result =new LinkedHashMap<String,String>();
+
+result.put("101","爱理不理");
+result.put("202","看一下就好");
+result.put("303","十万火急");
+        request.setAttribute("resultMap",result);
+Message msg=new Message();
+if(op.equals("syyh")){
+List<Message> list=mservice.getMessageList();
+map.put("list",list);
+}else{
+    String uid=op;
+   List<Message> list=mservice.selectByName(Integer.parseInt(uid));
+    map.put("list",list);
+        }
+        return map;
+    }
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> delete(String mid) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        Message msg = new Message();
+        msg.setMid(Integer.parseInt(mid));
+        String id=mid;
+         mservice.delete(Integer.parseInt(id));
+         int count=1;
+        map.put("count", count);
+        return map;
+    }
+    @RequestMapping("batchDelete")
+    public String batchDelete(String[] ids){
+        for (String string : ids) {
+            mservice.delete(Integer.parseInt(string));
+        }
+        return "index";
+    }
+      @RequestMapping("selectUserList")
+      public String selectUserList(Model model) {
+          system.out.print("jint ren fang fa ");
+          List<User> list = service.selectAll();
+          model.addAttribute("list", list);
+          return "insert";
+      }
+        @RequestMapping( value = "/insert",method = RequestMethod.GET)
+        @ResponseBody
+        public Map<String,Object> insert(String content,String chec ,int jinji)throws Exception {
+
+           Map<String,Object> map=new HashMap<>();
+           content= URLDecoder.decode(content,"utf-8");
+           chec=URLDecoder.decode(chec,"utf-8");
+           Message msg;
+    for (String arg:chec.split(",")) {
+        msg = new Message();
+        msg.setContent(content);
+        msg.setRank(jinji);
+        msg.setU_id(Integer.parseInt(arg));
+        mservice.insert(msg);
+    }
+     int count=1;
+    map.put("count",count);
+            return map;
+        }
+/*@RequestMapping("batchInsert")
+    public String batchInsert(String[] ids){
+    for (String  string : ids) {
+        mservice.insert(string);
+    }
+}*/
+
+
+
+    }

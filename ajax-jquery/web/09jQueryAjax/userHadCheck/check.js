@@ -1,11 +1,11 @@
 $(function () {
 
 	$("#username").blur(function () {
-		$.get
-		alert($);
-		var usernameText = this.val();
-		var params = {"username": usernameText};
+		// alert($);
+		var usernameText = $(this).val();
+		var params = {username: usernameText};
 		$.get("/userHadCheckServlet",params, function (data) {
+
 			$("#msg").text(data);
 		});
 	});

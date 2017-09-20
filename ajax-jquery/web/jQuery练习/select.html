@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<form action="#" name="userform">
+    用户录入 <br>
+    用户名：<input type="text" name="username" id="username" size=15>
+    email: <input type="text" name="email" id="email" size= 15>
+    电话： <input type="text" name="tel" id="tel" size = 15> <br>
+    <input type="button" value="添加" id="btn_submit">
+    <input type="button" value="删除所有" id="btn_removeAll">
+</form>
+
+<hr>
+<table border="1" align="center" cellspacing="0" cellpadding="0" width= 400>
+    <thead>
+    <tr>
+        <th>用户名</th>
+        <th>email</th>
+        <th>电话</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    <tbody id="userTbody">
+    <tr>
+        <td>貂蝉</td>
+        <td>123@163.com</td>
+        <td>12345</td>
+        <td><a href="#">删除</a></td>
+    </tr>
+    </tbody>
+
+</table>
+</body>
+<script src="select.js"></script>
+</html>
