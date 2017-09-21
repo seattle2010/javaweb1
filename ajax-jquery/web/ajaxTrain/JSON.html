@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON</title>
+
+</head>
+<body>
+JSON 是一个网络文本传输格式
+流行的文本格式主要有 纯文本,XML,JSON
+定义一个对象用花括号 {}  定义一个对象的数组用[]
+<script>
+	var department = {
+		name :"jack",
+		age : "17",
+		dept :{
+		id:"0001",
+		deptNo:"3001"
+	},
+	hobby:["java","c","js"]
+	}
+	//最后一个元素不打逗号,其他每一个间隔用逗号分开
+	console.info(department);
+	console.info(department.name);
+	console.info(department.age);
+	console.info(department.dept);
+	console.info(department.dept.id);
+	console.info(department.hobby[0]);
+	console.info(department.hobby[1]);
+
+	var deptMap = [department, department, department];
+	var deptMap2 = [
+	department1 = {
+		name: "jack",
+		age: "17"
+	},
+	department2 = {
+		name: "jack",
+		age: "18"
+	},
+	department3 = {
+		name: "jack",
+		age: "19"
+	}
+    ]
+	console.info(deptMap2);
+//传输json之前可以定义成字符串形式   传出方:
+	var str = "{'name':'tom','age':17}";
+	// 获取方
+//    eval()是js自带方法,强力转换,能够把字符串内容原原本本的转成js代码
+	var json = eval("(" + str + ")");
+	console.info(json);
+//    ({'name':'tom','age':17}) 形成这个格式  这个形式就是标准json执行样式
+</script>
+
+
+</body>
+</html>

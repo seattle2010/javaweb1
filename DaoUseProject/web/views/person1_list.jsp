@@ -11,15 +11,15 @@
             border-collapse: collapse;
         }
         tr:nth-child(odd){
-            background: rgba(128,128,128,.3);
+            background: mediumturquoise;
         }
 
         tr:hover{
-            background: rgba(128,128,128,.6);
+            background: lightpink;
         }
         tr:first-child{
-            background: #0088cc;
-            color: #fff;
+            background: #98FB98;
+
         }
 
     </style>
@@ -38,14 +38,14 @@ ${person}
         <th>操作</th>
     </tr>
     <c:forEach var="s" items="${person}" varStatus="vs">
-        <tr style="background-color: ${vs.count%2==0?"orange":""}">
+        <tr >
             <td>${s.id}</td>
             <td>${s.name}</td>
             <td>${s.age}</td>
             <td>
 
                 <a href="/Person1DeleteServlet?id=${s.id}">删除</a>
-                <a href="#">编辑</a>
+                <a href="/PersonToEditServlet?id=${s.id}">编辑</a>
             </td>
         </tr>
     </c:forEach>

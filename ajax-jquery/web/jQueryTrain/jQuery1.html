@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="jQuery1.js"></script>
+
+    <style>
+        #div3 {
+            background-color: hotpink;
+        }
+    </style>
+</head>
+<body>
+<!--jQuery    jQuery是javascript的库  javascript有很多库 最流行的是jQuery-->
+<!--write less, do more-->
+<!--jQuery 1.8 版本  兼容了 ie 6,7-->
+<!--jQuery 2.9 版本  彻底抛弃了ie 6,7 主要面向chrome,firefox,-->
+<!--jQuery 3.2 版本  -->
+<!--基本写法:-->
+<!--$()   相当于 jQuery()-->
+<!--$("#div1")    获得jQuery对象-->
+<!--$(function(){   //方法,函数 -->
+    <!---->
+<!--})-->
+<div id="div1">div1</div>
+<div id="div2">div2</div>
+<div id="div3" name="jack" style="background-color: orange">div3</div>
+<div id="div4">div4</div>
+<input type="button" id="btn1" value="div1" onclick= change1()>
+<input type="button" id="btn2" value="div2" onclick= change2()> <br>
+<hr>
+<div id="div5" class="div">div5</div>
+<div id="div6" class="div">div6</div>
+<hr>
+<div id="div7" class="div">div7</div>
+<input type="text" name="input7"  id="input7">
+<span id="span7">span</span>
+<ul>
+    <li><span class="span">1</span></li>
+    <li><span class="span">2</span></li>
+    <li><span class="span">3</span></li>
+    <li><span class="span">4</span></li>
+    <ul>
+        <li><span>5</span></li>
+        <li><span>6</span></li>
+    </ul>
+</ul>
+<input type="checkbox" name="checkbox8"  id="checkbox81" checked>
+<input type="checkbox" name="checkbox8"  id="checkbox82" checked>
+<input type="checkbox" name="checkbox8"  id="checkbox83" checked>
+<hr>
+<br>
+<input type="button" class="btn" id="btn5" name="button5" value="div5">
+<input type="button" class="btn" id="btn6" name="button6" value="div6">
+<input type="button" class="btn" id="btn7" name="button7" value="div7">
+<input type="button" class="btn" id="btn8" name="button8" value="div8">
+<input type="button" class="btn" id="btn9" name="button9" value="div9">
+
+
+</body>
+<script>
+//    document.getElementById("btn5").onclick = function () {
+//    	//js取得事件
+//    }
+//选择器
+// 1  id选择器    # 符号  来寻找对应的id
+// 2  class类选择器   . 符号  来寻找对应的id
+// 3  element元素选择器   html的元素名  来寻找对应的id
+// 4  多重选择器  可以组合用多个选择器类型 每一个引用用逗号分开
+$("#btn9").click(function () {
+//	:select  :required   :disabled  :checked
+	$(":enabled").attr("style","background-color:yellow");
+});
+
+$("#btn8").click(function () {
+//	$("ul:first>li>span").attr("style","background-color:lightpink");
+//	$("ul:first-child>li>span").attr("style","background-color:lightpink");
+//	$("ul>li:nth-child(2n+1)>span:odd").attr("style","background-color:lightpink");
+	$(":checked").attr("style","background-color:lightpink");
+//	$("ul li span").attr("style","background-color:lightpink");
+});
+
+$("#btn7").click(function () {
+	$("#input7,#div7,#span7").attr("style","background-color:hotpink");
+});
+    $("#btn5").click(function () {
+//	    alert("1");
+	    $(".btn").html("<i>新的div</i>");
+	    $(".btn").attr("style","background-color:pink");
+	    $(".div").attr("style","background-color:hotpink");
+	    $("input").attr("style","background-color:orange");
+    });
+
+$("#btn6").click(function () {
+//	alert("2");
+	$("#div6").html("<i>新的div6</i>");
+
+});
+
+
+	function change1() {
+		document.getElementById("div1").innerHTML = "新的div1";
+	}
+	function change2() {  //jQuery对象后面可以接 .属性/方法
+                          //如果是没有括号,基本上就是属性
+                         //带括号  基本上就是方法
+//		alert($("#div2").length);  //属性
+//		alert($);
+		$("#div2").html("<i>新的div2</i>"); //html是取得内容里面可以包含html标签
+//		$("#div2").text("新的div2");//text和innerHTML类似,只是单纯的文本内容
+        //取得文本内容 html  text
+        console.info($("#div2").html());
+        console.info($("#div2").text());
+        //val() 取得value值  赋值给value
+        console.info($("#btn1").val());
+        console.info($("#btn1").val("tom"));
+        console.info($("#btn1").val());
+        //attr()  属性方法 attribute   区别 property
+		console.info($("#div3").attr("style"));
+        $("#div3").attr("style","background-color:pink")
+		console.info($("#div3").attr("style"));
+		console.info($("#div3").attr("name"));//获取原来的name值
+		console.info($("#div3").attr("name","rose"));//赋新值给name
+		console.info($("#div3").attr("name"));//查看新的值是否存在
+        //attr("style","background-color:pink")
+		$("#div4").css("background-color", "pink");
+		console.info($("#div4").attr("style"));
+	}
+</script>
+</html>

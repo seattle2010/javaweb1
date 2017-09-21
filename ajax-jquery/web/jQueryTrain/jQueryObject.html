@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<!--jQueryObject-->
+<div id="div1">div1值</div>
+</body>
+<script>
+    $(function(){
+	    //    jQuery是把DOM对象进行包装,形成jQuery对象
+//	    html的DOM对象
+	    var divEL = document.getElementById("div1");
+	    console.info(divEL);
+	    console.info(divEL.innerHTML);
+
+//	    jQuery对象
+//        var $div1 = $("#div1");
+	    var div1Text = $("#div1");
+	    console.info(div1Text);
+	    console.info(div1Text.text());
+
+//	    DOM --->  jQuery
+	    console.info($(divEL));
+
+//	    jQuery ---> DOM
+//	    div1Text.get(0)
+	    console.info(div1Text.get(0));//常用
+	    console.info(div1Text[0]);
+        jQuery和js混合
+	    console.info($(document.getElementById("div1")));
+
+
+    })
+
+
+</script>
+</html>

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "PersonSaveServlet", urlPatterns = "/PersonSaveServlet")
-public class PersonSaveServlet extends HttpServlet {
+@WebServlet(name = "PersonToEditServlet", urlPatterns = "/PersonToEditServlet")
+public class PersonToEditServlet extends HttpServlet {
     private IPersonDao dao;
     @Override
     public void init() throws ServletException {
@@ -24,16 +24,12 @@ public class PersonSaveServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        //================PersonSaveServlet=============================
-        String name = request.getParameter("name");
-        Integer age = Integer.valueOf(request.getParameter("age"));
-        Person person = new Person(name, age);
-        System.out.println(person); 
+        //=============================================
 
-        dao.save(person);
-        System.out.println(person); 
-        response.sendRedirect("/Person1ListServlet");
-
+        Long id = Long.valueOf(request.getParameter("id"));
+        Person person = dao.get(id);
+        request.setAttribute("p1",person);
+request.getRequestDispatcher("views/edit.jsp").forward(request, response);
     }
 
 }

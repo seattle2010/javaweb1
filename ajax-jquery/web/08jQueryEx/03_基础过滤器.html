@@ -70,5 +70,28 @@
 	<li>问题七：表格隔行变色；</li>
 	<li>问题八：选择所有id属性值以select_开头的checkbox([attribute^=value])；</li>
 </div>
+<script>
+	$(function(){
+		//问题一：请得到ul第一个li元素(:first)
+		console.info($("ul li:first"));
+		//问题二：请得到每一个ul的第一个li元素(:first-child)；
+		console.info($("ul li:first-child"));
+		//问题三：得到ul最后一个li元素；
+		console.info($("ul li:last"));
+		//问题四：得到每一个ul元素的最后一个li元素(:last-child)
+		console.info($("ul li:last-child"));
+		//问题五：得到奇数/偶数位li元素(:odd/:even)；
+		$("ul li:odd").css("background-color", "pink");
+		//问题六：得到每一个ul元素的奇数/偶数位li元素(:nth-child)；
+		$("ul li:nth-child(2n)").css("background-color", "hotpink");
+		//问题七：表格隔行变色；
+		$("table tbody tr:nth-child(odd)").css("background-color", "pink");
+		//问题八：选择所有id属性值以select_开头的checkbox([attribute^=value])；
+		//8 $("input[name!='newletter']")
+		// $("input[name^='new']")  异或等 就相当于以什么什么开头的
+		// $("input[name$='new']")  以什么什么结尾的
+		//$("input[name*='new']")  包含这个字母的
+	})
+</script>
 </body>
 </html>

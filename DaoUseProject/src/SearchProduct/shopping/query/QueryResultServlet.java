@@ -1,7 +1,7 @@
-package com.Query.product.query;
+package SearchProduct.shopping.query;
 
-import com.Query.product.dao.impl.ProductDAOImpl;
-import com.Query.product.domain.Product;
+import SearchProduct.shopping.dao.impl.ProductDAOImpl;
+import SearchProduct.shopping.domain.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.List;
 
-@WebServlet(name = "ProductQuerySimpleServlet", urlPatterns = "/ProductQuerySimpleServlet")
-public class ProductQuerySimpleServlet extends HttpServlet {
+@WebServlet(name = "QueryResultServlet", urlPatterns = "/QueryResultServlet")
+public class QueryResultServlet extends HttpServlet {
     private ProductDAOImpl dao;
     @Override
     public void init() throws ServletException {
@@ -25,11 +26,16 @@ public class ProductQuerySimpleServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         //=============================================
-        //ProductQueryObject queryObject = new ProductQueryObject();
-
-        List<Product> list = dao.list();
+        //取值
+        String productName = request.getParameter("productName");
+        String minSalePrice = request.getParameter("minSalePrice");
+        String maxSalePrice = request.getParameter("maxSalePrice");
+        //调用业务方法 把取得的值付给形参
+        List<Product> list = dao.QueryList(productName,
+                new BigDecimal(minSalePrice), new BigDecimal(maxSalePrice));
         request.setAttribute("products",list);
-        request.getRequestDispatcher("/ProductQuery/productQueryList.jsp").forward(request, response);
+        request.getRequestDispatcher("/QueryView/List.jsp").
+                forward(request, response);
     }
 
 }

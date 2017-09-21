@@ -1,7 +1,7 @@
-package com.Query.product.query;
+package SearchProduct.shopping.query;
 
-import com.Query.product.dao.impl.ProductDAOImpl;
-import com.Query.product.domain.Product;
+import SearchProduct.shopping.dao.impl.ProductDAOImpl;
+import SearchProduct.shopping.domain.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "ProductQuerySimpleServlet", urlPatterns = "/ProductQuerySimpleServlet")
-public class ProductQuerySimpleServlet extends HttpServlet {
-    private ProductDAOImpl dao;
+@WebServlet(name = "ProductQueryServlet", urlPatterns = "/ProductQueryServlet")
+public class ProductQueryServlet extends HttpServlet {
+    private ProductDAOImpl productDAO;
     @Override
     public void init() throws ServletException {
-        dao = new ProductDAOImpl();
+        productDAO = new ProductDAOImpl();
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,11 +25,19 @@ public class ProductQuerySimpleServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         //=============================================
-        //ProductQueryObject queryObject = new ProductQueryObject();
-
-        List<Product> list = dao.list();
+        List<Product> list = productDAO.list();
         request.setAttribute("products",list);
-        request.getRequestDispatcher("/ProductQuery/productQueryList.jsp").forward(request, response);
+        request.getRequestDispatcher("/QueryView/List.jsp").forward(request, response);
+    }
+
+
+
+
+
+
+
+    private boolean hasLength(String str) {
+        return str != null && !"".equals(str.trim());
     }
 
 }

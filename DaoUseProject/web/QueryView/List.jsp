@@ -6,14 +6,16 @@
     <title>货品显示列表</title>
 </head>
 <body>
-Query
+List
 <%--${products}--%>
-<form action="/ProductSimpleServlet" method="post">
-    商品的名称: <input type="text" name="productName" value="${query.productName}" style="width: 100px"> <br>
-    商品零售价: 低价格<input type="number" name="minSalePrice" value="${query.minSalePrice}" style="width: 120px">
-    - 高价格<input type="number" name="maxSalePrice" value="${query.minSalePrice}"> <br>
-    <input type="submit" value="查询" style="background-color: orange" width=100px>
+
+<form action="/QueryResultServlet" method="post" >
+    商品名称--><input type="text" name="productName"> <br>
+价格范围 最小价格: <input type="text" name="minSalePrice">-
+    最大价格:<input type="text" name="maxSalePrice"> <br>
+    <input type="submit" name="submit" value="查询" style="background-color: orange">
 </form>
+
 <table border="1" cellspacing="0" cellpadding="0" width=100%>
     <tr>
         <th>货品编号</th>
@@ -24,6 +26,7 @@ Query
         <th>零&nbsp售&nbsp价</th>
         <th>成&nbsp本&nbsp价</th>
         <th>折&emsp;&emsp;扣</th>
+
     </tr>
     <c:forEach var="p" items="${products}">
     <tr>

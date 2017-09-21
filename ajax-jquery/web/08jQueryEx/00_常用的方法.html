@@ -11,7 +11,8 @@
 
 <h1 id="h1">明天<b>不上课</b></h1>
 <input type="text" id="username" value="tom" /><br/><br/><br/>
-<a href="javascript:;" id="debug">DEBUG</a>
+<a href="javascript:;" id="debug">dog</a>
+<input type="button" id="btn" name="btn1" value="提交" >
 <div id="debug_detail">
 	jQuery常用方法:<br/>
     jquery.length//获取元素的个数.<br/>
@@ -27,5 +28,23 @@
 	<li>问题三：获取h1的html内容和纯文本内容，对结果进行比较；</li>
 	<li>问题四：把h1的颜色设置为黄色(attr)；</li>
 </div>
+<script>
+	$("#btn").click(function () {
+		//  1
+		console.info($("#username").val());
+		// 2
+		console.info($("#username").val("四大名著"));
+		console.info($("#username").val());
+       // 3
+		console.info($("#h1").html());
+		console.info($("#h1").text());
+		$("#h1").html();
+		$("#h1").text()
+         //4
+		$("#h1").attr("style","background-color: yellow");
+	})
+
+
+</script>
 </body>
 </html>

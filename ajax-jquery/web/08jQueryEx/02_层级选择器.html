@@ -30,10 +30,30 @@
 
 
 <div class="question">
-	<div>问题一：选择ul下的所有li元素，并分析选择结果； </div>
-	<div>问题二：选择myul下的所有li元素，并分析选择结果； </div>
-	<div>问题三：选择所有label元素后的input元素，并分析选择结果； </div>
-	<div>问题四：选择紧跟着label元素的input元素，并分析选择结果； </div>
+	<div>问题一：选择ul下的所有li元素 </div>
+	<div>问题二：选择myul下的所有li元素 </div>
+	<div>问题三：选择所有label元素后的input元素</div>
+	<div>问题四：选择紧跟着label元素的input元素</div>
 </div>
+<script>
+	$(function(){   //类似window.onload   可以重复  可以写多个 互相不冲突
+		              //window.onload只能有一个起作用
+		   //=======内部从属关系
+	   //问题一：选择ul下的所有li元素
+		console.info($("ul li"));
+		//问题二：选择myul下的所有li元素
+		console.info($("ul>li"));
+		//=========外部兄弟关系
+//		问题三：选择所有label元素后的input元素
+		  //  意思是 label后面所有的兄弟
+		console.info("******");
+		console.info($("label~input"));
+//		问题四：选择紧跟着label元素的input元素
+		//紧跟着label的兄弟
+		console.info("#####");
+		console.info($("label+input"));
+	});
+
+</script>
 </body>
 </html>

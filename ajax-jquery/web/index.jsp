@@ -11,7 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
-  登陆成功
+
+  恭喜 登陆成功!!
   </body>
 </html>
