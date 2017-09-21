@@ -1,0 +1,145 @@
+不刷新网页实现下拉框联动，
+
+下面直接贴代码吧
+
+1、页面文件index.jsp，在这里使用jquery的ajax对象$.ajax。
+
+Html代码  收藏代码
+<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+    <script src="js/jquery-1.3.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    function validatorloginName(){
+     //$("#loginName").val()等同于document.getElementById("loginName").value;
+     var loginName=$("#loginName").val();
+     //采用jQuery的ajax方式提交请求
+     $.ajax({
+             type: "POST",
+             url: "VaildateName",
+             data: "loginName="+loginName,
+             success: function(data){
+                 if(data != ""){
+                     setCounty(data);
+                 }
+             }
+            });
+    }
+
+    //当改变省份时设置城市
+    function setCounty(result){
+        //得到每组
+        var arrydata = result.split(";");
+        var county = document.getElementById("toCity");
+
+        clearSel(county); //清空城市
+        county.options.add(new Option("请选择城市..."));
+
+        $.each(arrydata, function(){
+            var value = this.split(",")[0];
+            var text = this.split(",")[1];
+            var option = new Option(text, value);
+            county.options.add(option);
+        });
+    }
+
+    // 清空下拉列表
+    function clearSel(oSelect){
+        while(oSelect.childNodes.length>0){
+            oSelect.removeChild(oSelect.childNodes[0]);
+        }
+    }
+</script>
+        <title>AJAX获得下拉框选择项</title>
+    </head>
+    <body>
+        <FORM id="myform" method="post">
+            下拉框&nbsp;
+            <select name="loginName" id=loginName
+                onchange="validatorloginName();">
+                <option value="">
+                    请选择...
+                </option>
+                <option value="a">
+                    北京城区
+                </option>
+                <option value="b">
+                    中国城市
+                </option>
+            </select>
+            &nbsp;联动框&nbsp;
+            <select name="toCity" id="toCity">
+                <option value="">
+                    请选择城市...
+                </option>
+            </select>
+        </FORM>
+    </body>
+</html>
+
+
+2、java后台处理类，返回下拉框内容。
+Java代码  收藏代码
+package com.me;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+    @SuppressWarnings("serial")
+    public class VaildateName extends HttpServlet {
+        public VaildateName() {
+        super();
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+
+        String loginName = request.getParameter("loginName").toString();
+        String tempStr = "";
+        if ("a".equals(loginName)) {
+            tempStr = "1,海淀区;2,朝阳区;3,东城区;4,西城区;5,丰台区;6,石景山区;7,崇文区;8,宣武区";
+        } else if ("b".equals(loginName)) {
+            tempStr = "1,上海;2,北京;3,天津;4,广州;5,辽宁";
+        }
+        response.getWriter().write(tempStr);// 此值jquery可以接收到
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        this.doGet(request, response);
+    }
+}
+
+
+3、web.xml，配置servlet。
+Xml代码  收藏代码
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+    xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>VaildateName</servlet-name>
+    <servlet-class>com.me.VaildateName</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>VaildateName</servlet-name>
+    <url-pattern>/VaildateName</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

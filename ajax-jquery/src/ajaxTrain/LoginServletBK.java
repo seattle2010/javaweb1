@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "LoginServletBK", urlPatterns = "/LoginServletBK")
+public class LoginServletBK extends HttpServlet {
 
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

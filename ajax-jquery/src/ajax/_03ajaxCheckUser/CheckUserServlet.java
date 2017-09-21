@@ -20,6 +20,7 @@ public class CheckUserServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         //=============================================
         String username = request.getParameter("username");
+        out.println(username+"<br>");
         String msg = null;
         if (data.contains(username)) {
             msg = "用户名已经被注册";

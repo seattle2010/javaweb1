@@ -25,7 +25,7 @@ document.getElementById("btn1").onclick = function () {
 	var passwordText = document.getElementById("password").value;
 
 	var ajax = new XMLHttpRequest();
-	ajax.open("post", "/LoginServlet", true);
+	ajax.open("post", "/LoginServletBK", true);
 	//让username和password形成键值对的形式传入过去
 	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	ajax.send("username=" + usernameText + "&password=" + passwordText);

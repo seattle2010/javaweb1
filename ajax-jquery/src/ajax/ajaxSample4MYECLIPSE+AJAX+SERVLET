@@ -1,0 +1,201 @@
+ 最近刚开始学AJAX的知识，这里介绍一个简单的Myeclipse+AJAX+Servlet项目。
+
+此项目包含3个文件：index.jsp、check.java。还有一个需要配置的文件是：web.xml，此文件在/Webroot/WEB-INF目录下，在建立工程的时候选中一个复选框就会有此文件。
+
+此项目的完成步骤：
+
+1.建立index.jsp文件，输入以下代码：
+
+复制代码
+ 1 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+ 2 <%
+ 3 String path = request.getContextPath();
+ 4 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+ 5 %>
+ 6
+ 7 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+ 8 <html>
+ 9   <head>
+10     <base href="<%=basePath%>">
+11
+12     <title>My JSP 'index.jsp' starting page</title>
+13     <meta http-equiv="pragma" content="no-cache">
+14     <meta http-equiv="cache-control" content="no-cache">
+15     <meta http-equiv="expires" content="0">
+16     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+17     <meta http-equiv="description" content="This is my page">
+18
+19     <link rel="stylesheet" type="text/css" href="styles.css">
+20
+21         <script>
+22 var xmlHttpReq;
+23 //创建一个XmlHttpRequest对象
+24 function createXmlHttpRequest()
+25 {
+26     window.alert("进入到createXmlHttpRequest()函数");
+27     if(window.XMLHttpRequest)
+28     {
+29        xmlHttpReq = new XMLHttpRequest();//非IE浏览器
+30     }else
+31     {
+32        xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");//IE浏览器
+33     }
+34 }
+35 //检测用户名是否已经被注册
+36 function checkUser()
+37 {
+38 window.alert("进入到checkUser()函数");
+39 var username = document.getElementById("user").value;
+40 if(username=="")
+41 {
+42     alert("用户名必须填写！");
+43     return false;
+44 }
+45 //首先创建对象
+46 createXmlHttpRequest();
+47 //指明准备状态改变时回调的函数名
+48 xmlHttpReq.onreadystatechange=handle;
+49 //尝试以异步的get方式访问某个URL
+50 //请求服务器端的一个servlet
+51 //var url = "/web06/Servlet/"
+52 var url = "./servlet/Check?username="+username;//+Math.random();
+53 window.alert(username);
+54 xmlHttpReq.open("get",url,true);
+55 //向服务器发送请求
+56 xmlHttpReq.send();
+57 window.alert("已经发送数据");
+58 }
+59 //状态发生改变时回调的函数
+60 function handle()
+61 {
+62 //准备状态为4
+63 window.alert("进入到handle()函数");
+64     if(xmlHttpReq.readyState==4)
+65     {
+66     window.alert("响应已完成；您可以获取并使用服务器的响应了。");
+67     //响应状态码为200，代表一切正常
+68        if(xmlHttpReq.status==200)
+69        {
+70               window.alert("交易成功 ");
+71            var res = xmlHttpReq.responseText;
+72            var result = document.getElementById("result");
+73            result.innerHTML = "<font color=red>"+res+"</font>";
+74        }
+75     }
+76 }
+77 </script>
+78   </head>
+79
+80   <body>
+81       <center><h1>表单注册</h1></center>
+82 <hr>
+83 姓名:
+84 <input type="text" id="user">
+85 <input type="button" value="检测用户名" onclick="checkUser()">
+86 <span id="result"></span>
+87   </body>
+88   </body>
+89 </html>
+复制代码
+2.建立Check.java文件，此文件所属的packet名称为com.wepull.servlet，代码如下：
+
+复制代码
+ 1 package com.wepull.servlet;
+ 2
+ 3 import java.io.IOException;
+ 4 import javax.servlet.ServletException;
+ 5 import javax.servlet.http.HttpServlet;
+ 6 import javax.servlet.http.HttpServletRequest;
+ 7 import javax.servlet.http.HttpServletResponse;
+ 8 //@WebServlet (name="Check",urlPatterns={"/diaocha.do"})
+ 9 public class Check extends HttpServlet {
+10
+11     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+12        //解决返回中文乱码问题
+13         //response.getWriter().println("str");
+14         response.setCharacterEncoding("utf-8");
+15
+16        String user = request.getParameter("username");
+17        response.getWriter().println(user);
+18        response.getWriter().println(request);
+19        System.out.println(user+"传过来是null");
+20        System.out.println(request);
+21       System.out.println(user+"传过来是null");
+22        //解决接收中文乱码问题
+23        //user = new String(user.getBytes("iso-8859-1"),"utf-8");
+24        if(user == "")
+25        {
+26            System.out.println("user is nullD!!!");
+27        }
+28        else
+29        {
+30        System.out.println(user);
+31
+32        String msg = null;
+33        if("jing".equals(user))
+34        {
+35            msg = "用户名已经被占用!";
+36        }else
+37        {
+38            msg = "用户名可以使用!";
+39        }
+40        response.getWriter().println(msg);
+41        }
+42
+43     }
+44     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+45        doGet(request,response);
+46     }
+47 }
+复制代码
+3.修改web.xml文件
+
+修改前：
+
+复制代码
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>web08</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+复制代码
+修改后：
+
+复制代码
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>web08</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+        <servlet-name>Check</servlet-name>
+        <servlet-class>com.wepull.servlet.Check</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>Check</servlet-name>
+    <url-pattern>/servlet/Check</url-pattern>
+    </servlet-mapping>
+</web-app>
+复制代码
+其中web08是我的项目名称。
+
+重要提醒（因为这个错误我Debug了好几天。。。）
+
+var url = "./servlet/Check?username="+username;//+Math.random();
+
+一定要注意""中的第一个字符 " ." ，否则Servlet就会收不到前端发送的数据（url不正确）。
+
+4.最后运行出来结果如下：

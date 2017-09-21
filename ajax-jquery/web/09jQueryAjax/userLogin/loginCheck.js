@@ -4,19 +4,22 @@ $(function () {
 $("#btn1").click(function () {
 	var usernameText = $(":input[name = username]").val();
 	var passwordText = $(":input[name = password]").val();
-	console.info(usernameText, passwordText);
+	// console.info(usernameText, passwordText);
 
-	$.post("/jQueryLoginCheckServlet",{username:usernameText,password:passwordText},function (data) {
+	$.post("/jQueryLoginServlet",{username:usernameText,password:passwordText},function (data) {
 		// contentType:"application/x-www-form-urlencoded";
 		console.info(data);
-		if(data.success){
-			window.location.href = "/index.jsp";练习
-		}else {
-			$("#msg").text(data.msg);
-		}
-	},"json")
+if(data == "success"){
+	window.location.href = "/index.jsp";
+}else {
+	$("#msg").text(data);
+}
+
+	})
 })
 });
+
+
 
 /*
 document.getElementById("btn1").onclick = function () {
