@@ -29,36 +29,36 @@ public class City {
 		
 		if (pid == 1) {
 			citys = Arrays.asList(
-					new City(11L,"成都"),
-					new City(12L,"南充"),
-					new City(13L,"绵阳"),
-					new City(14L,"遂宁"),
-					new City(15L,"达州"),
-					new City(16L,"宜宾"),
-					new City(17L,"泸州"),
-					new City(18L,"乐山")
+					new City(11L,"哈尔滨"),
+					new City(12L,"鸡西"),
+					new City(13L,"鹤岗"),
+					new City(14L,"双鸭山"),
+					new City(15L,"大庆"),
+					new City(16L,"伊春"),
+					new City(17L,"黑河"),
+					new City(18L,"绥化")
 			);
 		} else if (pid == 2) {
 			citys = Arrays.asList(
-					new City(21L,"广州"),
-					new City(22L,"深圳"),
-					new City(23L,"佛山"),
-					new City(24L,"中山"),
-					new City(25L,"珠海"),
-					new City(26L,"汕头"),
-					new City(27L,"潮州"),
-					new City(28L,"东莞")
+					new City(21L,"长春"),
+					new City(22L,"吉林"),
+					new City(23L,"四平"),
+					new City(24L,"通化"),
+					new City(25L,"白山"),
+					new City(26L,"辽源"),
+					new City(27L,"白城"),
+					new City(28L,"松原")
 			);
 		} else if (pid == 3) {
 			citys = Arrays.asList(
-					new City(31L,"西安"),
-					new City(32L,"宝鸡"),
-					new City(33L,"咸阳"),
-					new City(34L,"延安"),
-					new City(35L,"汉中"),
-					new City(36L,"渭南"),
-					new City(37L,"榆林"),
-					new City(38L,"咸阳")
+					new City(31L,"大连"),
+					new City(32L,"沈阳"),
+					new City(33L,"鞍山"),
+					new City(34L,"抚顺"),
+					new City(35L,"本溪"),
+					new City(36L,"丹东"),
+					new City(37L,"锦州"),
+					new City(38L,"铁岭")
 			);
 		}
 		return citys;

@@ -6,11 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script src="../jquery-3.2.1.min.js"></script>
+<script src="../../jquery-3.2.1.min.js"></script>
 <html>
 <head>
     <title>Title</title>
-    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../../jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <select  id="provinceId">

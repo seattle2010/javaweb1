@@ -29,9 +29,9 @@ public class Province {
 
 	public static List<Province> getAllProvince() {
 		List<Province> provinces = new ArrayList<Province>();
-		provinces.add(new Province(1L, "四川"));
-		provinces.add(new Province(2L, "广东"));
-		provinces.add(new Province(3L, "陕西"));
+		provinces.add(new Province(1L, "黑龙江"));
+		provinces.add(new Province(2L, "吉林"));
+		provinces.add(new Province(3L, "辽宁"));
 		return provinces;
 	}
 	public String toString() {
